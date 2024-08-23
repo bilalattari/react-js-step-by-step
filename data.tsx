@@ -43,7 +43,7 @@ const landingPageData = {
     },
     {
       id: 2,
-      name: "Bob Lee",
+      name: "Jack Lee",
       feedback:
         "The budgeting feature is fantastic! I've saved so much more since using this app.",
       avatar: "https://example.com/bob.jpg",
