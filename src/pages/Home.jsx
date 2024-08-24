@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-
 function Home() {
   const navigate = useNavigate();
 
@@ -8,7 +7,6 @@ function Home() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* Hero Section */}
       <section className="bg-blue-700 text-white py-20">
         <div className="container mx-auto text-center">
           <h1 className="text-5xl font-bold mb-4">Welcome to Our Bookstore</h1>
