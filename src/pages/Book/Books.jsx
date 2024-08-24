@@ -101,6 +101,8 @@ function Books() {
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Filter Section */}
+
+      
       <div className="text-center mb-8">
         <button
           onClick={() => filterBooks("All")}
