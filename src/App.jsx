@@ -20,15 +20,8 @@ const cities = [
 ];
 
 function App() {
-  const [chosen, setChosen] = useState({
-    name: "Karachi",
-    latitude: 24.8607,
-    longitude: 67.0011,
-  });
-  const [weatherData, setWeather] = useState({
-    main: {},
-    weather: [],
-  });
+  const [chosen, setChosen] = useState(cities[0]);
+  const [weatherData, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -38,21 +31,34 @@ function App() {
     fetch(api)
       .then((res) => res.json())
       .then((data) => {
-        setWeather(data), setLoading(false);
+        setWeather(data);
+        setLoading(false);
       });
   }, [chosen]);
 
-  const { main, weather } = weatherData;
-  console.log(weather);
+  const handleCityChange = (e) => {
+    setChosen(cities[e.target.value]);
+  };
 
+  // if (loading) {
+  //   return (
+  //     <div className="flex justify-center items-center min-h-screen bg-gray-100">
+  //       <h1 className="text-4xl font-bold">Loading...</h1>
+  //     </div>
+  //   );
+  // }
+
+  const { main, weather, sys , name } = weatherData;
+  const weatherIcon = `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
+  const temperature = Math.round(main.temp - 273.15);
+  const feelsLike = Math.round(main.feels_like - 273.15);
 
   return (
-    <div>
-      <h1 className="text-3xl text-center my-10 font-medium">Weather App</h1>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center">
+      <h1 className="text-3xl text-gray-800 font-bold mb-10">Weather App</h1>
       <select
-        onChange={(e) => setChosen(cities[e.target.value])}
-        name="cities"
-        className="border p-3"
+        onChange={handleCityChange}
+        className="p-3 mb-5 border rounded bg-white text-black"
       >
         {cities.map((data, ind) => (
           <option key={ind} value={ind}>
@@ -60,22 +66,34 @@ function App() {
           </option>
         ))}
       </select>
-      {
-        loading ? 
-        <h1 className="text-center my-5">Loading....</h1> 
-        :
-      <div>
-        <h1 className="text-3xl my-2 underline">Weather : {weather[0].main}</h1>
-        <h1 className="text-3xl my-2 underline">
-          Current Weather : {Math.round(main?.temp - 273.15)}
-          <sup>o</sup>C{" "}
-        </h1>
-        <h1 className="text-3xl my-2 underline">
-          Feels Like : {Math.round(main?.feels_like - 273.15)}
-          <sup>o</sup>C{" "}
-        </h1>
+
+      <div className="bg-white bg-opacity-80 p-10 rounded-lg shadow-lg text-center">
+        <img
+          src={weatherIcon}
+          alt={weather[0].description}
+          className="mx-auto"
+        />
+        <h1 className="text-3xl font-bold underline my-2">{weather[0].main}</h1>
+        <h2 className="text-2xl mb-4">
+          {temperature}°C (Feels like: {feelsLike}°C)
+        </h2>
+        <div className="text-xl my-2 flex justify-between">
+          <span className="font-semibold">Humidity:</span>
+          <span>{main.humidity}%</span>
+        </div>
+        <div className="text-xl my-2 flex justify-between">
+          <span className="font-semibold">Pressure:</span>
+          <span>{main.pressure} hPa</span>
+        </div>
+        <div className="text-xl my-2 flex justify-between">
+          <span className="font-semibold">Sunrise:</span>
+          <span>{new Date(sys.sunrise * 1000).toLocaleTimeString()}</span>
+        </div>
+        <div className="text-xl my-2 flex justify-between">
+          <span className="font-semibold">Sunset:</span>
+          <span>{new Date(sys.sunset * 1000).toLocaleTimeString()}</span>
+        </div>
       </div>
-      }
     </div>
   );
 }
