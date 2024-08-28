@@ -1,5 +1,8 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 function Home() {
+  const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
   const goToAboutPage = () => navigate("/about");
@@ -9,6 +12,7 @@ function Home() {
     <div className="min-h-screen bg-gray-100">
       <section className="bg-blue-700 text-white py-20">
         <div className="container mx-auto text-center">
+          <h1 className="text-3xl font-bold mb-4">Hello {user.name}</h1>
           <h1 className="text-5xl font-bold mb-4">Welcome to Our Bookstore</h1>
           <p className="text-xl mb-8">Discover your next great read!</p>
           <button

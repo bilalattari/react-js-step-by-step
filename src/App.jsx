@@ -10,30 +10,36 @@ import SignUp from "./pages/Auth/Signup";
 import Books from "./pages/Book/Books";
 import BookDetail from "./pages/Book/BookDetail";
 import NotFound from "./pages/NotFound";
+import ThemeContextProvider from "./context/ThemeContext";
+import UserContextProvider from "./context/UserContext";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contactus" element={<ContactUs />} />
+    <UserContextProvider>
+      <ThemeContextProvider>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contactus" element={<ContactUs />} />
 
-        <Route path="/auth">
-          <Route index element={<Auth />} />
-          <Route path="signin" element={<SignIn />} />
-          <Route path="signup" element={<SignUp />} />
-        </Route>
+            <Route path="/auth">
+              <Route index element={<Auth />} />
+              <Route path="signin" element={<SignIn />} />
+              <Route path="signup" element={<SignUp />} />
+            </Route>
 
-        <Route path="/books">
-          <Route index element={<Books />} />
-          <Route path=":title" element={<BookDetail />} />
-        </Route>
+            <Route path="/books">
+              <Route index element={<Books />} />
+              <Route path=":title" element={<BookDetail />} />
+            </Route>
 
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeContextProvider>
+    </UserContextProvider>
   );
 }
 
