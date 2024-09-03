@@ -1,10 +1,12 @@
+import { Avatar } from "@nextui-org/react";
+
 function Footer({header}) {
   return (
     <footer className="text-gray-600 body-font">
-      <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+      <div className="container py-8 mx-auto flex items-center sm:flex-row flex-col">
         <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-          <img src={header.logo} className="h-10 w-10 rounded-full" />
-          <span className="ml-3 text-xl">{header.title}</span>
+          <Avatar src="https://images.unsplash.com/photo-1714191154549-27171852c208?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2hpbGQlMjB0b3lzfGVufDB8fDB8fHww" />
+          <span className="ml-3 text-xl">{'Logo'}</span>
         </a>
         <p className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
           © 2020 FinanceGuru —

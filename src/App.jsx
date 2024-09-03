@@ -1,25 +1,24 @@
-import "./App.css";
-import Button from "./components/Button";
-import Features from "./components/Features";
-import Footer from "./components/Footer";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
 import Header from "./components/Header";
-import Hero from "./components/Hero";
-import Testimonials from "./components/Testimonials";
-import landingPageData from "./constant/webData";
+import SmartWatches from "./pages/SmartWatches";
+import Motorcycle from "./pages/SmartWatches";
+import Sports from "./pages/Sports";
+import MotorCycles from "./pages/motorcycle";
+import ProductDetails from "./pages/ProductDetails";
 
 function App() {
-  const { header, hero, features, testimonials } = landingPageData;
-  const user = {
-    isLogin: false,
-  };
   return (
-    <div>
-      <Header header={header} user={user} />
-      <Hero hero={hero} />
-      <Features features={features} />
-      <Testimonials testimonials={testimonials} />
-      <Footer header={header} />
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/sports" element={<Sports />} />
+        <Route path="/smartwatches" element={<SmartWatches />} />
+        <Route path="/motorcycle" element={<MotorCycles />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
