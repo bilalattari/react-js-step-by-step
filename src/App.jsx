@@ -1,11 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Header from "./components/Header";
-import SmartWatches from "./pages/SmartWatches";
-import Motorcycle from "./pages/SmartWatches";
-import Sports from "./pages/Sports";
-import MotorCycles from "./pages/motorcycle";
-import ProductDetails from "./pages/ProductDetails";
+import Header from "./components/Header.jsx";
+import Products from "./pages/Products.jsx";
+import ProductDetail from "./pages/ProductDetail.jsx";
 
 function App() {
   return (
@@ -13,10 +10,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/sports" element={<Sports />} />
-        <Route path="/smartwatches" element={<SmartWatches />} />
-        <Route path="/motorcycle" element={<MotorCycles />} />
-        <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/:id" element={<ProductDetail />} />
       </Routes>
     </BrowserRouter>
   );
