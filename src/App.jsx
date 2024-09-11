@@ -42,7 +42,6 @@ function App() {
       )
         .then((res) => res.json())
         .then((res) => {
-          // console.log("search ka response kya araha he=>", res);
           setImages(res.results);
           setLoading(false);
         })
